@@ -21,4 +21,4 @@ jobs:
       env:
         gpr.user: $ {{ secrets.USER_NAME }}
         gpr.password: $ {{ secrets.GITHUB_KEY }}
-        run: ./gradlew publish
+      run: ./gradlew publish
