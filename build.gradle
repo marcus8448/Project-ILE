@@ -99,8 +99,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/marcus8448/Project-ILE")
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.password") ?: System.getenv("PASSWORD")
+                username = System.getenv("USERNAME")
+                password = System.getenv("PASSWORD")
             }
         }
     }
