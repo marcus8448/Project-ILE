@@ -20,5 +20,5 @@ jobs:
     - name: Publish artifact
       env:
         gpr.user: $ {{ secrets.USER_NAME }}
-        gpr.password: $ {{ secrets.GITHUB_KEY }}
+        gpr.key: $ {{ secrets.GITHUB_KEY }}
       run: ./gradlew publish

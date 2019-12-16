@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.14.4-1.0.0.0'
+version = '1.14.4-0.0.0.1'
 group = 'io.github.marcus8448.mods.project-ile'
 archivesBaseName = 'Project-Ile'
 
@@ -21,6 +21,9 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 
 minecraft {
     mappings channel: 'snapshot', version: '20190719-1.14.3'
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
     runs {
         client {
             workingDirectory project.file('run')
@@ -29,7 +32,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                project-ile {
+                projectile {
                     source sourceSets.main
                 }
             }
@@ -42,7 +45,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                project-ile {
+                projectile {
                     source sourceSets.main
                 }
             }
@@ -57,7 +60,7 @@ minecraft {
             args '--mod', 'project-ile', '--all', '--output', file('src/generated/resources/')
 
             mods {
-                project-ile {
+                projectile {
                     source sourceSets.main
                 }
             }
@@ -75,11 +78,11 @@ jar {
         attributes([
             "Specification-Title": "project-ile",
             "Specification-Vendor": "marcus8448",
-            "Specification-Version": "1",
+            "Specification-Version": "0",
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"marcus8448",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
         ])
     }
 }
@@ -97,7 +100,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/marcus8448/Project-ILE")
             credentials {
                 username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
+                password = project.findProperty("gpr.password") ?: System.getenv("PASSWORD")
             }
         }
     }

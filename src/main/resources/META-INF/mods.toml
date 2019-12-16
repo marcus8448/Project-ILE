@@ -1,18 +1,18 @@
 modLoader="javafml"
 loaderVersion="[28,)"
-issueTrackerURL="https://github.com/marcus8448/Project-ILE
+issueTrackerURL="https://github.com/marcus8448/Project-ILE"
 
 [[mods]]
 modId="project-ile"
 version="${file.jarVersion}"
 displayName="Project-ILE"
 #updateJSONURL="http://myurl.me/"
-displayURL="http://marcus8448.github.io/"
-logoFile="examplemod.png"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/project-ile"
+logoFile="project-ile.png"
 authors="marcus8448"
 description='''
 Projectiles galore!
-Also adds some things that have to do witht he projectiles.
+Also adds some things that have to do with projectiles.
 '''
 [[dependencies.project-ile]]
     modId="forge"
