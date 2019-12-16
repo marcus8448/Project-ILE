@@ -19,6 +19,6 @@ jobs:
       run: ./gradlew build
     - name: Publish artifact
       env:
-        gpr.user: $ {{ secrets.USER_NAME }}
-        gpr.key: $ {{ secrets.GITHUB_KEY }}
+        USERNAME: $ {{ secrets.USER_NAME }}
+        PASSWORD: $ {{ secrets.GITHUB_KEY }}
       run: ./gradlew publish
