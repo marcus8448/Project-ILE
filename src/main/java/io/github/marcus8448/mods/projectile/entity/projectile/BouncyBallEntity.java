@@ -114,7 +114,7 @@ public class BouncyBallEntity extends ProjectileItemEntity {
     protected void onImpact(RayTraceResult result) {
         if (lifeTime >= 6000) {
             if (!this.world.isRemote) {
-                ItemEntity itemEntity = new ItemEntity(this.world, this.posX, this.posY, this.posZ, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball"))));
+                ItemEntity itemEntity = new ItemEntity(this.world, this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball"))));
                 this.world.addEntity(itemEntity);
                 this.remove();
             }
@@ -122,7 +122,7 @@ public class BouncyBallEntity extends ProjectileItemEntity {
         }
 
         for(int i = 0; i < 8; ++i) {
-            this.world.addParticle(new ItemParticleData(ParticleTypes.ITEM, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball")))), this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            this.world.addParticle(new ItemParticleData(ParticleTypes.ITEM, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball")))), this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, 0.0D, 0.0D, 0.0D);
         }
 
         if (result.getType() == RayTraceResult.Type.BLOCK) {
@@ -134,7 +134,7 @@ public class BouncyBallEntity extends ProjectileItemEntity {
 
     @Override
     public ActionResultType applyPlayerInteraction(PlayerEntity player, Vec3d vec, Hand hand) {
-        ItemEntity itemEntity = new ItemEntity(this.world, this.posX, this.posY, this.posZ, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball"))));
+        ItemEntity itemEntity = new ItemEntity(this.world, this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball"))));
         itemEntity.setOwnerId(player.getUniqueID());
         this.world.addEntity(itemEntity);
         this.remove();

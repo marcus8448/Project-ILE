@@ -55,7 +55,7 @@ public class DynamiteEntity extends ProjectileItemEntity {
 
     @Override
     protected void onImpact(RayTraceResult result) {
-        this.world.createExplosion(this, null, this.posX, this.posY, this.posZ, 4.0F, false, Explosion.Mode.DESTROY);
+        this.world.createExplosion(this, null, this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, 4.0F, false, Explosion.Mode.DESTROY);
 
         if (!this.world.isRemote) {
             this.world.setEntityState(this, (byte)3);

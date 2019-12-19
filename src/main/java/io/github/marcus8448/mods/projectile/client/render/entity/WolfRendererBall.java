@@ -17,9 +17,11 @@
 
 package io.github.marcus8448.mods.projectile.client.render.entity;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import io.github.marcus8448.mods.projectile.ProjectIle;
 import io.github.marcus8448.mods.projectile.entity.ai.goal.FollowBallGoal;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.entity.WolfRenderer;
@@ -34,7 +36,9 @@ public class WolfRendererBall extends WolfRenderer {
     }
 
     @Override
-    public void doRender(WolfEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+    public void func_225623_a_(WolfEntity entity, float p_225623_2_, float p_225623_3_, MatrixStack p_225623_4_, IRenderTypeBuffer p_225623_5_, int p_225623_6_) {
+        super.func_225623_a_(entity, p_225623_2_, p_225623_3_, p_225623_4_, p_225623_5_, p_225623_6_);
+        /*
         ItemStack stack = ItemStack.EMPTY;
         ProjectIle.LOGGER.info(entity.goalSelector.goals.size());
         for (PrioritizedGoal goal : entity.goalSelector.goals) {
@@ -51,8 +55,31 @@ public class WolfRendererBall extends WolfRenderer {
                     return false;
                 }
             };
-            renderer.doRender(new ItemEntity(entity.world, entity.posX, entity.posY + 1, entity.posZ, stack), entity.posX, entity.posY + 1, entity.posZ, entityYaw, partialTicks);
-        }
-        super.doRender(entity, x, y, z, entityYaw, partialTicks);
+            //renderer.func_225623_a_(new ItemEntity(entity.world, entity.getPositionVec().x, entity.getPositionVec().y + 1, entity.getPositionVec().z, stack), entity.getPositionVec().x, entity.getPositionVec().y + 1, entity.getPositionVec().z, entityYaw, partialTicks);
+        }*/
     }
+
+    //
+//    @Override
+//    public void doRender(WolfEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+//        ItemStack stack = ItemStack.EMPTY;
+//        ProjectIle.LOGGER.info(entity.goalSelector.goals.size());
+//        for (PrioritizedGoal goal : entity.goalSelector.goals) {
+//            if (goal.getGoal() instanceof FollowBallGoal) {
+//                stack = ((FollowBallGoal) goal.getGoal()).getStack(); //FIXME - Server -> Client sync
+//                ProjectIle.LOGGER.info(stack);
+//            }
+//        }
+//
+//        if (stack != ItemStack.EMPTY) {
+//            ItemRenderer renderer = new ItemRenderer(renderManager, Minecraft.getInstance().getItemRenderer()) {
+//                @Override
+//                public boolean shouldBob() {
+//                    return false;
+//                }
+//            };
+//            renderer.doRender(new ItemEntity(entity.world, entity.getPositionVec().x, entity.getPositionVec().y + 1, entity.getPositionVec().z, stack), entity.getPositionVec().x, entity.getPositionVec().y + 1, entity.getPositionVec().z, entityYaw, partialTicks);
+//        }
+//        super.doRender(entity, x, y, z, entityYaw, partialTicks);
+//    }
 }

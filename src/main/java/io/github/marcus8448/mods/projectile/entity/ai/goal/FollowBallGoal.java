@@ -103,7 +103,7 @@ public class FollowBallGoal extends Goal {
         if (tameable.getOwner() != null && !tameable.isSitting()) {
             if (ballItem != ItemStack.EMPTY) {
                 if (tameable.getOwner().getPositionVec().squareDistanceTo(tameable.getPositionVec()) < 2.25F) {
-                    ItemEntity item = new ItemEntity(this.tameable.world, this.tameable.posX, this.tameable.posY, this.tameable.posZ, ballItem);
+                    ItemEntity item = new ItemEntity(this.tameable.world, this.tameable.getPositionVec().x, this.tameable.getPositionVec().y, this.tameable.getPositionVec().z, ballItem);
                     item.setOwnerId(tameable.getOwnerId());
                     this.tameable.world.addEntity(item);
                     this.ballItem = ItemStack.EMPTY;
@@ -138,7 +138,7 @@ public class FollowBallGoal extends Goal {
         flag = false;
         this.tameable.getNavigator().clearPath();
         if (ballItem != ItemStack.EMPTY) {
-            ItemEntity item = new ItemEntity(this.tameable.world, this.tameable.posX, this.tameable.posY, this.tameable.posZ, ballItem);
+            ItemEntity item = new ItemEntity(this.tameable.world, this.tameable.getPositionVec().x, this.tameable.getPositionVec().y, this.tameable.getPositionVec().z, ballItem);
             this.tameable.world.addEntity(item);
         }
         tameable.goalSelector.enableFlag(Flag.MOVE);

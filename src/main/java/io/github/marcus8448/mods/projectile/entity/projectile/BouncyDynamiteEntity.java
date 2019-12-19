@@ -54,7 +54,7 @@ public class BouncyDynamiteEntity extends ProjectileItemEntity {
         if (bounces >= 5) {
             if (!this.world.isRemote) {
                 this.world.setEntityState(this, (byte)3);
-                this.world.createExplosion(this, null, this.posX, this.posY, this.posZ, 4.0F, false, Explosion.Mode.DESTROY);
+                this.world.createExplosion(this, null, this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, 4.0F, false, Explosion.Mode.DESTROY);
                 this.remove();
             }
             return;

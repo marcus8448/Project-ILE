@@ -113,7 +113,7 @@ public class DyedSnowballEntity extends ProjectileItemEntity {
             IParticleData iparticledata = new ItemParticleData(ParticleTypes.ITEM, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getName() + "_snowball"))));
 
             for(int i = 0; i < 8; ++i) {
-                this.world.addParticle(iparticledata, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+                this.world.addParticle(iparticledata, this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, 0.0D, 0.0D, 0.0D);
             }
         }
     }
