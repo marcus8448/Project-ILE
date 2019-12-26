@@ -17,8 +17,3 @@ jobs:
       run: chmod 777 gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Publish artifact
-      env:
-        USERNAME: $ {{ secrets.USER_NAME }}
-        PASSWORD: $ {{ secrets.KEY }}
-      run: ./gradlew publish
