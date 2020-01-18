@@ -1,18 +1,19 @@
 /*
- *     Copyright (C) 2019 marcus8448
+ * Project-ILE
+ * Copyright (C) 2019 marcus8448
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package io.github.marcus8448.mods.projectile.entity.projectile;
@@ -91,13 +92,13 @@ public class DyedSnowballEntity extends ProjectileItemEntity {
     }
 
     @Override
-    protected Item func_213885_i() {
-        return ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_snowball"));
+    protected Item getDefaultItem() {
+        return ForgeRegistries.ITEMS.getValue(new ResourceLocation(ProjectIle.MODID, this.dataManager.get(DYE_COLOR).getTranslationKey() + "_snowball"));
     }
 
     @Override
     public ItemStack getItem() {
-        return new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_snowball")));
+        return new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ProjectIle.MODID, this.dataManager.get(DYE_COLOR).getTranslationKey() + "_snowball")));
     }
 
     @Override
@@ -110,7 +111,7 @@ public class DyedSnowballEntity extends ProjectileItemEntity {
     @OnlyIn(Dist.CLIENT)
     public void handleStatusUpdate(byte id) {
         if (id == 3) {
-            IParticleData iparticledata = new ItemParticleData(ParticleTypes.ITEM, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getName() + "_snowball"))));
+            IParticleData iparticledata = new ItemParticleData(ParticleTypes.ITEM, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ProjectIle.MODID, this.dataManager.get(DYE_COLOR).getName() + "_snowball"))));
 
             for(int i = 0; i < 8; ++i) {
                 this.world.addParticle(iparticledata, this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, 0.0D, 0.0D, 0.0D);
@@ -132,7 +133,7 @@ public class DyedSnowballEntity extends ProjectileItemEntity {
                 for (EquipmentSlotType type : EquipmentSlotType.values()) {
                     if (type.getSlotType() == EquipmentSlotType.Group.ARMOR) {
                         if (!((LivingEntity) entity).getItemStackFromSlot(type).isEmpty() && ((LivingEntity) entity).getItemStackFromSlot(type).getItem() instanceof IDyeableArmorItem) {
-                            entity.setItemStackToSlot(type, IDyeableArmorItem.func_219975_a(((LivingEntity) entity).getItemStackFromSlot(type), Collections.singletonList(DyeItem.getItem(this.dataManager.get(DYE_COLOR)))));
+                            entity.setItemStackToSlot(type, IDyeableArmorItem.dyeItem(((LivingEntity) entity).getItemStackFromSlot(type), Collections.singletonList(DyeItem.getItem(this.dataManager.get(DYE_COLOR)))));
                         }
                     }
                 }

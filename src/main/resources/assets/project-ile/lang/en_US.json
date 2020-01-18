@@ -1,6 +1,10 @@
 {
   "itemGroup.projectiles": "Project-ILE",
 
+  "tooltip.project-ile.particle.enabled": "Enabled",
+  "tooltip.project-ile.particle.disabled": "Disabled",
+  "tooltip.project-ile.particle.invert": "Right click to invert",
+
   "item.project-ile.white_snowball": "White Snowball",
   "item.project-ile.orange_snowball": "Orange Snowball",
   "item.project-ile.magenta_snowball": "Magenta Snowball",

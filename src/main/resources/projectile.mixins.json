@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "io.github.marcus8448.mods.projectile.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "ThrowableEntityMixin",
+    "RecipeProviderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

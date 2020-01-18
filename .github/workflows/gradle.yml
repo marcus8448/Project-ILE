@@ -4,9 +4,7 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Set up JDK 1.8
@@ -15,5 +13,7 @@ jobs:
         java-version: 1.8
     - name: Fix gradle permissions
       run: chmod 777 gradlew
+    - name: Verify license headers
+      run: ./gradlew checkLicenses
     - name: Build with Gradle
       run: ./gradlew build

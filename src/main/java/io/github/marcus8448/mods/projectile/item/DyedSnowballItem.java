@@ -1,18 +1,19 @@
 /*
- *     Copyright (C) 2019 marcus8448
+ * Project-ILE
+ * Copyright (C) 2019 marcus8448
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package io.github.marcus8448.mods.projectile.item;
@@ -40,7 +41,7 @@ public class DyedSnowballItem extends Item {
 
         DispenserBlock.registerDispenseBehavior(this, new ProjectileDispenseBehavior() {
             protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stackIn) {
-                return Util.make(new DyedSnowballEntity(worldIn, position.getX(), position.getY(), position.getZ(), color), (item) -> item.func_213884_b(stackIn));
+                return Util.make(new DyedSnowballEntity(worldIn, position.getX(), position.getY(), position.getZ(), color), (item) -> item.setItem(stackIn));
             }
         });
     }
@@ -54,7 +55,7 @@ public class DyedSnowballItem extends Item {
         world.playSound(null, player.getPositionVec().x, player.getPositionVec().y, player.getPositionVec().z, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!world.isRemote) {
             DyedSnowballEntity snowball = new DyedSnowballEntity(world, player, color);
-            snowball.func_213884_b(stack);
+            snowball.setItem(stack);
             snowball.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
             world.addEntity(snowball);
         }

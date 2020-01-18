@@ -1,26 +1,34 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven/' }
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://repo.spongepowered.org/maven' }
+
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
-apply plugin: 'net.minecraftforge.gradle'
 
-apply plugin: 'eclipse'
+plugins {
+    id 'net.minecrell.licenser' version '0.4.1'
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.spongepowered.mixin'
+
 apply plugin: 'maven-publish'
 
-version = '1.15.1-0.0.0.2'
+version = '1.15.1-0.0.1.0'
 group = 'io.github.marcus8448.mods.project-ile'
 archivesBaseName = 'Project-Ile'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20190719-1.14.3'
+    mappings channel: 'snapshot', version: '20200108-mixed-1.15.1'
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -68,11 +76,34 @@ minecraft {
     }
 }
 
-dependencies {
-    minecraft 'net.minecraftforge:forge:1.15.1-30.0.7'
+repositories {
+    maven { url = 'https://repo.spongepowered.org/maven' }
+    maven { url = 'https://maven.tterrag.com/' }
 }
 
-// Example for how to get properties into the manifest for reading by the runtime..
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.15.1-30.0.41'
+}
+
+mixin {
+    add sourceSets.main, "projectile.refmap.json"
+}
+
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+license {
+    header = file("$rootDir/file-header.txt")
+}
+
+dependencies {
+    shade('org.spongepowered:mixin:0.8-SNAPSHOT') {
+        transitive = false
+    }
+}
+
 jar {
     manifest {
         attributes([
@@ -100,7 +131,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/marcus8448/Project-ILE")
             credentials {
                 username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
+                password = project.findProperty("gpr.password") ?: System.getenv("PASSWORD")
             }
         }
     }

@@ -1,18 +1,19 @@
 /*
- *     Copyright (C) 2019 marcus8448
+ * Project-ILE
+ * Copyright (C) 2019 marcus8448
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package io.github.marcus8448.mods.projectile.entity.projectile;
@@ -99,8 +100,13 @@ public class BouncyBallEntity extends ProjectileItemEntity {
     }
 
     @Override
+    protected Item getDefaultItem() {
+        return getItem().getItem();
+    }
+
+    @Override
     public ItemStack getItem() {
-        return new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball")));
+        return new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ProjectIle.MODID, this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball")));
     }
 
     @Override
@@ -114,7 +120,7 @@ public class BouncyBallEntity extends ProjectileItemEntity {
     protected void onImpact(RayTraceResult result) {
         if (lifeTime >= 6000) {
             if (!this.world.isRemote) {
-                ItemEntity itemEntity = new ItemEntity(this.world, this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball"))));
+                ItemEntity itemEntity = new ItemEntity(this.world, this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ProjectIle.MODID, this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball"))));
                 this.world.addEntity(itemEntity);
                 this.remove();
             }
@@ -122,7 +128,7 @@ public class BouncyBallEntity extends ProjectileItemEntity {
         }
 
         for(int i = 0; i < 8; ++i) {
-            this.world.addParticle(new ItemParticleData(ParticleTypes.ITEM, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball")))), this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, 0.0D, 0.0D, 0.0D);
+            this.world.addParticle(new ItemParticleData(ParticleTypes.ITEM, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ProjectIle.MODID, this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball")))), this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, 0.0D, 0.0D, 0.0D);
         }
 
         if (result.getType() == RayTraceResult.Type.BLOCK) {
@@ -134,7 +140,7 @@ public class BouncyBallEntity extends ProjectileItemEntity {
 
     @Override
     public ActionResultType applyPlayerInteraction(PlayerEntity player, Vec3d vec, Hand hand) {
-        ItemEntity itemEntity = new ItemEntity(this.world, this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball"))));
+        ItemEntity itemEntity = new ItemEntity(this.world, this.getPositionVec().x, this.getPositionVec().y, this.getPositionVec().z, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(ProjectIle.MODID, this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball"))));
         itemEntity.setOwnerId(player.getUniqueID());
         this.world.addEntity(itemEntity);
         this.remove();
@@ -150,11 +156,6 @@ public class BouncyBallEntity extends ProjectileItemEntity {
     @Override
     public boolean canBeCollidedWith() {
         return true;
-    }
-
-    @Override
-    protected Item func_213885_i() {
-        return ForgeRegistries.ITEMS.getValue(new ResourceLocation("project-ile", this.dataManager.get(DYE_COLOR).getTranslationKey() + "_bouncy_ball"));
     }
 
     @Override
